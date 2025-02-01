@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: "Poppins", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+select {
+  background-color: #131B25;
+  border: 1px solid #28394E;
+  color: #8D949B;
+  padding: 5px 10px;
+}
+
+select option {
+  background-color: #131B25;  
+  color: #8D949B;  
+}
+
+select option:hover {
+  background-color: #28394E;  
+  color: white;
+}
+
+select:focus option {
+  background-color: #28394E;  
+  color: white;
+}

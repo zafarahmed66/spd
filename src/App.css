@@ -1,0 +1,56 @@
+.selected {
+  border: 2px solid blue;
+}
+
+.addInput {
+  width: 20%;
+  height: 4vh;
+  border: 1px solid black;
+}
+
+.editable-div:empty::before {
+  content: "Enter Title Here";  
+  color: gray;
+  pointer-events: none; 
+  font-weight: 600;
+}
+
+@media screen and (min-width: 400px) {
+  .inner-text {
+    font-size: 7px; /* Adjust the font size as needed */
+  }
+  .table-text {
+    font-size: 7px; /* Adjust the font size as needed */
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .inner-text {
+    font-size: 10px; /* Adjust the font size as needed */
+  }
+  .table-text {
+    font-size: 10px; /* Adjust the font size as needed */
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .inner-text {
+    font-size: 12px; /* Adjust the font size as needed */
+  }
+  .table-text {
+    font-size: 11px; /* Adjust the font size as needed */
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .inner-text {
+    font-size: 15px; /* Adjust the font size as needed */
+  }
+  .table-text {
+    font-size: 12px; /* Adjust the font size as needed */
+  }
+}
+
+td:hover {
+  background-color: "red" !important;
+}
