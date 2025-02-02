@@ -114,16 +114,11 @@ const CustomSelect = ({ value, onChange, options }) => {
         <span>{selectedOption}</span>
         <svg
           style={styles.arrow}
-          fill="none"
+          fill="currentColor"
           stroke="currentColor"
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M19 9l-7 7-7-7"
-          />
+          <path d="M12 18L6 9h12l-6 9z" />
         </svg>
       </button>
 
@@ -178,8 +173,8 @@ const DownloadSelect = ({ onChange, stageRef, subscriptionLevel }) => {
       flex: 1,
       padding: "10px 16px",
       color: "#fff",
-      fontSize: "14px",
       textAlign: "left",
+      borderRight: "1px solid #fff",
       cursor: "pointer",
       border: "none",
       background: "transparent",
@@ -204,7 +199,7 @@ const DownloadSelect = ({ onChange, stageRef, subscriptionLevel }) => {
         : { top: "calc(100% + 4px)" }),
       left: 0,
       width: "100%",
-      background: "#1E2A38",
+      background: "#131B25",
       border: "1px solid #28394E",
       borderRadius: "6px",
       boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
@@ -289,16 +284,11 @@ const DownloadSelect = ({ onChange, stageRef, subscriptionLevel }) => {
         <button style={styles.toggleButton}>
           <svg
             style={styles.arrow}
-            fill="none"
+            fill="currentColor"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            />
+            <path d="M12 18L6 9h12l-6 9z" />
           </svg>
         </button>
       </div>

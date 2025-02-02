@@ -10,24 +10,37 @@ code {
     monospace;
 }
 
-select {
-  background-color: #131B25;
-  border: 1px solid #28394E;
-  color: #8D949B;
-  padding: 5px 10px;
+/* For Webkit browsers */
+::-webkit-scrollbar {
+    width: 6px;
 }
 
-select option {
-  background-color: #131B25;  
-  color: #8D949B;  
+::-webkit-scrollbar-thumb {
+    background: #dfdfdf;
+    border-radius: 6px;
+    border: 3px solid transparent;
+    background-clip: content-box;
 }
 
-select option:hover {
-  background-color: #28394E;  
-  color: white;
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
-select:focus option {
-  background-color: #28394E;  
-  color: white;
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* For Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #dfdfdf #f1f1f1;
 }

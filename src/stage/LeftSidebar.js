@@ -5,16 +5,29 @@ import { FaPlus } from "react-icons/fa6";
 import { sidebarIcons } from "./helper";
 
 const LeftSidebar = ({ iRef, imageList }) => {
-  const [activeItem, setActiveItem] = useState(null);
+  const [activeItems, setActiveItems] = useState(new Set());
+
+  const toggleActive = (itemId) => {
+    setActiveItems((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemId)) {
+        newSet.delete(itemId);
+      } else {
+        newSet.add(itemId);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <div
-      className="pt-1 d-flex flex-column position-relative border-right"
+      className="pt-1 d-flex flex-column position-relative"
       style={{
         width: "25%",
         backgroundColor: "#1C2938",
         color: "white",
-        height: "100vh"
+        height: "100vh",
+        borderRight: "1px solid #28394E",
       }}
     >
       <SimpleTreeView
@@ -32,7 +45,7 @@ const LeftSidebar = ({ iRef, imageList }) => {
         </div>
 
         <div
-          className="border rounded m-2 p-1 d-flex justify-content-center align-items-center"
+          className="rounded m-2 p-1 d-flex justify-content-center align-items-center"
           draggable="true"
           onDragStart={() => {
             iRef.current = "textLabel";
@@ -49,7 +62,7 @@ const LeftSidebar = ({ iRef, imageList }) => {
         <div
           style={{
             overflowY: "scroll",
-            height: "77vh",
+            height: "73vh",
           }}
         >
           {Object.keys(imageList).map((dir, key) => {
@@ -61,13 +74,25 @@ const LeftSidebar = ({ iRef, imageList }) => {
                 itemId={itemId}
                 key={`instrument-${key}`}
                 disabled={imageList[dir].length === 0}
-                style={{
-                  backgroundColor:
-                    activeItem === itemId ? "#008281" : "transparent",
+                sx={{
+                  backgroundColor: activeItems.has(itemId)
+                    ? "#008281"
+                    : "transparent",
                   cursor: "pointer",
+                  "&:hover": {
+                    backgroundColor: "#008281",
+                  },
+                  "& .MuiTreeItem-content": {
+                    backgroundColor: activeItems.has(itemId)
+                      ? "#008281"
+                      : "transparent",
+                    "&:hover": {
+                      backgroundColor: "#424D59",
+                    },
+                  },
                 }}
-                className="mx-2 rounded"
-                onClick={() => setActiveItem(itemId)}
+                className="mx-2 my-1 rounded tree-item"
+                onClick={() => toggleActive(itemId)}
                 label={
                   <div className="d-flex align-items-center p-2">
                     {IconComponent && <IconComponent className="mx-2" />}
@@ -109,12 +134,13 @@ const LeftSidebar = ({ iRef, imageList }) => {
       </SimpleTreeView>
 
       <div
-        className="w-100 d-flex border-top py-4 position-absolute"
+        className="w-100 d-flex py-4 position-absolute"
         style={{
           bottom: "0",
           justifyContent: "space-evenly",
           backgroundColor: "#1C2938",
           zIndex: 100,
+          borderTop: "1px solid #28394E",
         }}
       >
         <a

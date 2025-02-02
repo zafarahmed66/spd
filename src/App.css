@@ -2,6 +2,33 @@
   border: 2px solid blue;
 }
 
+table .selected {
+  border: none;
+  background-color: #424D59;
+}
+
+tr:hover {
+    background-color: #424D59;
+}
+
+tr:hover td {
+    background-color: transparent; 
+}
+
+input:focus, button:focus {
+  border: none;
+  outline: none;
+} 
+
+.dragAndDrop {
+background-image: repeating-linear-gradient(182deg, #8D949B, #8D949B 25.76px, transparent 28px, transparent 44.56px, #8D949B 46px), repeating-linear-gradient(272deg, #8D949B, #8D949B 25.76px, transparent 28px, transparent 44.56px, #8D949B 46px), repeating-linear-gradient(2deg, #8D949B, #8D949B 25.76px, transparent 28px, transparent 44.56px, #8D949B 46px), repeating-linear-gradient(92deg, #8D949B, #8D949B 25.76px, transparent 28px, transparent 44.56px, #8D949B 46px);
+background-size: 2px 100%, 100% 2px, 2px 100% , 100% 2px;
+background-position: 0 0, 0 0, 100% 0, 0 100%;
+background-repeat: no-repeat;
+opacity: 30%;
+}
+
+
 .addInput {
   width: 20%;
   height: 4vh;
@@ -14,6 +41,8 @@
   pointer-events: none; 
   font-weight: 600;
 }
+
+
 
 @media screen and (min-width: 400px) {
   .inner-text {
@@ -49,8 +78,4 @@
   .table-text {
     font-size: 12px; /* Adjust the font size as needed */
   }
-}
-
-td:hover {
-  background-color: "red" !important;
 }

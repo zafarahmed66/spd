@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import { styled } from '@mui/material/styles';
 import "../App.css";
 import LeftSidebar from "./LeftSidebar";
 
@@ -14,6 +16,18 @@ import { getNestedList } from "./helper";
 import { CustomSelect, DownloadSelect } from "./CustomSelect";
 import { FaRegSave } from "react-icons/fa";
 import { TbFileDownload } from "react-icons/tb";
+
+const CustomTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: "#131B25",
+    color: "FFFFFF",
+    maxWidth: 220,
+    fontSize: "1rem",
+    border: "1px solid #28394E",
+  },
+}));
 
 const numOfRows = 13;
 
@@ -42,6 +56,33 @@ const vocalMics = [
   "DI XLR",
   "DI 1/4",
 ];
+
+const tableStyles = {
+  tableContainer: {
+    width: "100%",
+  },
+  table: {
+    width: "100%",
+    borderCollapse: "collapse",
+    backgroundColor: "#1C2938",
+    borderRight: "1px solid #28394E",
+  },
+  th: {
+    padding: "4px",
+    fontWeight: "normal",
+    fontSize: "14px",
+    color: "#a0aec0",
+    backgroundColor: "#1C2938",
+    borderBottom: "1px solid #28394E",
+  },
+  td: {
+    padding: "4px",
+    color: "#a0aec0",
+    borderBottom: "1px solid #28394E",
+    cursor: "pointer",
+    
+  },
+};
 
 const StageBuilder = () => {
   //*************************** title */
@@ -227,7 +268,7 @@ const StageBuilder = () => {
   return (
     <div className="position-relative">
       <img
-        src="/favicon.ico"
+        src="/music.svg"
         style={{ position: "absolute", top: 20, right: 40, zIndex: 9999 }}
         alt="favicon"
       />
@@ -235,15 +276,16 @@ const StageBuilder = () => {
         <LeftSidebar iRef={imageRef} imageList={imageList} />
 
         <div
-          className="flex-1"
           style={{
             width: "100%",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           <div
             style={{
+              flex: "1",
               position: "relative",
-              height: "93vh",
               width: "100%",
               display: "flex",
               flexDirection: "column",
@@ -252,7 +294,7 @@ const StageBuilder = () => {
               paddingTop: "20px",
             }}
             onDrop={handleDrop}
-            onDragOver={(e) => e.preventDefault()} //to allow dropping the selected element in this area.
+            onDragOver={(e) => e.preventDefault()}
             ref={stageRef}
             onClick={cancelSelected}
           >
@@ -278,7 +320,7 @@ const StageBuilder = () => {
 
             {dropCount === 0 && jsonData === null && (
               <div
-                className="rounded flex"
+                className="rounded flex dragAndDrop"
                 style={{
                   flex: 1,
                   position: "absolute",
@@ -289,7 +331,7 @@ const StageBuilder = () => {
                   justifyContent: "center",
                   alignItems: "center",
                   width: "70vw",
-                  border: "3px dashed #8D949B",
+                  // border: "3px dashed #8D949B",
                   transform: "translate(-50%, -20%)",
                 }}
               >
@@ -298,6 +340,7 @@ const StageBuilder = () => {
                     fontSize: "32px",
                     maxWidth: "300px",
                     color: "#8D949B",
+                    opacity: "70%",
                   }}
                 >
                   Drag items from sidebar here
@@ -313,30 +356,27 @@ const StageBuilder = () => {
               id="input-table"
               className="d-flex align-items-end"
             >
-              <div className="w-100 d-flex justify-content-center">
+              <div className="w-100 d-flex">
                 {grids &&
                   grids.map((grid, index) => (
                     <table
                       key={index}
                       id={`table-${index}`}
-                      style={{
-                        fontSize: "16px",
-                      }}
-                      className="table table-hover table-text border-bottom m-0 border-right"
+                      style={tableStyles.table}
+                      className="m-0"
                     >
                       <thead>
                         {grid.length > 0 && (
                           <tr
                             style={{
-                              color: "#c0c4cc",
                               fontSize: "12px",
                             }}
                             className=""
                           >
-                            <th className="p-1">No</th>
-                            <th className="p-1">Name</th>
-                            <th className="p-1">Type</th>
-                            <th className="p-1">Input</th>
+                            <th style={tableStyles.th}>NO</th>
+                            <th style={tableStyles.th}>NAME</th>
+                            <th style={tableStyles.th}>TYPE</th>
+                            <th style={tableStyles.th}>INPUT</th>
                           </tr>
                         )}
                       </thead>
@@ -346,20 +386,30 @@ const StageBuilder = () => {
                             key={i}
                             id={`tr-${index * numOfRows + i}`}
                             onClick={(e) => handleTableRow(e, index, i)}
+                            style={{
+                              "&:hover": {
+                                backgroundColor: "#008281",
+                              },
+                            }}
                           >
                             {entry !== null ? (
                               <>
-                                <td className="p-1">{i + index * 10 + 1}</td>
-                                <td className="p-1">{entry.name}</td>
-                                <td className="p-1">{entry.type}</td>
-                                <td className="p-1">{entry.input}</td>
+                                <td style={tableStyles.td}>
+                                  {i + index * 10 + 1}
+                                </td>
+                                <td style={tableStyles.td}>{entry.name}</td>
+                                <td style={tableStyles.td}>{entry.type}</td>
+                                <td style={tableStyles.td}>{entry.input}</td>
                               </>
                             ) : (
                               <>
-                                <td className="p-1"> {i + index * 10 + 1} </td>
-                                <td className="p-1"> - </td>
-                                <td className="p-1"> - </td>
-                                <td className="p-1"> - </td>
+                                <td style={tableStyles.td}>
+                                  {" "}
+                                  {i + index * 10 + 1}{" "}
+                                </td>
+                                <td style={tableStyles.td}> - </td>
+                                <td style={tableStyles.td}> - </td>
+                                <td style={tableStyles.td}> - </td>
                               </>
                             )}
                           </tr>
@@ -376,9 +426,10 @@ const StageBuilder = () => {
             style={{
               backgroundColor: "#1C2938",
               color: "white",
+              padding: "0.85rem 12px",
             }}
             id="control-area"
-            className="d-flex control-area justify-content-between p-2"
+            className="d-flex control-area justify-content-between align-items-center"
           >
             <div
               className="d-flex justify-content-center align-items-center"
@@ -398,6 +449,7 @@ const StageBuilder = () => {
                   border: "1px solid #28394E",
                   borderRadius: "8px",
                   color: "white",
+                  width: "220px",
                 }}
               />
 
@@ -435,18 +487,27 @@ const StageBuilder = () => {
                 gap: "5px",
               }}
             >
-              <button
-                className="rounded p-2"
-                style={{
-                  backgroundColor: "#008281",
-                  cursor: "pointer",
-                  color: "white",
-                  border: "1px solid #28394E",
-                }}
-                onClick={importData}
+              <CustomTooltip
+                title="Import Design"
               >
-                <TbFileDownload />
-              </button>
+                <button
+                  className="rounded pt-1"
+                  style={{
+                    backgroundColor: "#008281",
+                    cursor: "pointer",
+                    color: "white",
+                    border: "1px solid #28394E",
+                  }}
+                  onClick={importData}
+                >
+                  <TbFileDownload
+                    style={{
+                      fontSize: "28px",
+                    }}
+                  />
+                </button>
+              </CustomTooltip>
+
               <input
                 id="file-input"
                 type="file"
@@ -454,18 +515,24 @@ const StageBuilder = () => {
                 style={{ display: "none" }}
                 onChange={handleFileSelect}
               />
-              <button
-                className="rounded p-2"
-                style={{
-                  backgroundColor: "#008281",
-                  cursor: "pointer",
-                  color: "white",
-                  border: "1px solid #28394E",
-                }}
-                onClick={() => saveCurrentWorkState(entries)}
-              >
-                <FaRegSave />
-              </button>
+              <CustomTooltip title="Save Design">
+                <button
+                  className="rounded pt-1"
+                  style={{
+                    backgroundColor: "#008281",
+                    cursor: "pointer",
+                    color: "white",
+                    border: "1px solid #28394E",
+                  }}
+                  onClick={() => saveCurrentWorkState(entries)}
+                >
+                  <FaRegSave
+                    style={{
+                      fontSize: "28px",
+                    }}
+                  />
+                </button>
+              </CustomTooltip>
 
               <DownloadSelect
                 stageRef={stageRef}
