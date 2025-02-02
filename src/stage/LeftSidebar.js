@@ -61,7 +61,7 @@ const LeftSidebar = ({ iRef, imageList }) => {
 
         <div
           style={{
-            overflowY: "scroll",
+            overflow: "auto",
             height: "73vh",
           }}
         >

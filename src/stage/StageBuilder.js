@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-import { styled } from '@mui/material/styles';
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import { styled } from "@mui/material/styles";
 import "../App.css";
 import LeftSidebar from "./LeftSidebar";
 
@@ -68,7 +68,7 @@ const tableStyles = {
     borderRight: "1px solid #28394E",
   },
   th: {
-    padding: "4px",
+    padding: "0.1rem",
     fontWeight: "normal",
     fontSize: "14px",
     color: "#a0aec0",
@@ -76,11 +76,10 @@ const tableStyles = {
     borderBottom: "1px solid #28394E",
   },
   td: {
-    padding: "4px",
+    padding: "0.1rem",
     color: "#a0aec0",
     borderBottom: "1px solid #28394E",
     cursor: "pointer",
-    
   },
 };
 
@@ -289,9 +288,7 @@ const StageBuilder = () => {
               width: "100%",
               display: "flex",
               flexDirection: "column",
-              overflowY: "scroll",
               backgroundColor: "white",
-              paddingTop: "20px",
             }}
             onDrop={handleDrop}
             onDragOver={(e) => e.preventDefault()}
@@ -326,12 +323,11 @@ const StageBuilder = () => {
                   position: "absolute",
                   top: "20%",
                   left: "50%",
-                  height: "35vh",
+                  height: "30%",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                   width: "70vw",
-                  // border: "3px dashed #8D949B",
                   transform: "translate(-50%, -20%)",
                 }}
               >
@@ -487,9 +483,7 @@ const StageBuilder = () => {
                 gap: "5px",
               }}
             >
-              <CustomTooltip
-                title="Import Design"
-              >
+              <CustomTooltip title="Import Design">
                 <button
                   className="rounded pt-1"
                   style={{
