@@ -271,14 +271,28 @@ const StageBuilder = () => {
         style={{ position: "absolute", top: 20, right: 40, zIndex: 9999 }}
         alt="favicon"
       />
-      <div className="d-flex justify-content-between pt-1 text-center">
-        <LeftSidebar iRef={imageRef} imageList={imageList} />
+      <div className="d-flex pt-1 text-center">
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "20%",
+            backgroundColor: "#1C2938",
+            color: "white",
+            zIndex: 999999,
+          }}
+        >
+          <LeftSidebar iRef={imageRef} imageList={imageList} />
+        </div>
 
         <div
           style={{
             width: "100%",
             display: "flex",
             flexDirection: "column",
+            height: "125vh",
+            marginLeft: "20%",
           }}
         >
           <div
@@ -308,7 +322,7 @@ const StageBuilder = () => {
                 ref={titleRef}
                 contentEditable
                 suppressContentEditableWarning={true}
-                style={{ fontSize: "32px", border: "none", outline: "none" }}
+                style={{ border: "none", outline: "none" }}
                 className="editable-div"
               >
                 {title}
@@ -423,12 +437,13 @@ const StageBuilder = () => {
               backgroundColor: "#1C2938",
               color: "white",
               padding: "0.85rem 12px",
+              gap: "10px",
             }}
             id="control-area"
-            className="d-flex control-area justify-content-between align-items-center"
+            className="d-flex flex-column flex-lg-row control-area justify-content-between align-items-center"
           >
             <div
-              className="d-flex justify-content-center align-items-center"
+              className="d-flex flex-column flex-md-row justify-content-center align-items-center"
               style={{
                 gap: "5px",
               }}
@@ -437,7 +452,7 @@ const StageBuilder = () => {
               <input
                 type="text"
                 placeholder="Name"
-                className="inner-text p-2"
+                className="p-2 responsive-input"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 style={{

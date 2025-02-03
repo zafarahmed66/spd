@@ -4,7 +4,7 @@ import { TreeItem } from "@mui/x-tree-view/TreeItem";
 import { FaPlus } from "react-icons/fa6";
 import { sidebarIcons } from "./helper";
 
-const LeftSidebar = ({ iRef, imageList }) => {
+const LeftSidebar = ({ iRef, imageList, setIsOpen }) => {
   const [activeItems, setActiveItems] = useState(new Set());
 
   const toggleActive = (itemId) => {
@@ -23,9 +23,6 @@ const LeftSidebar = ({ iRef, imageList }) => {
     <div
       className="pt-1 d-flex flex-column position-relative"
       style={{
-        width: "25%",
-        backgroundColor: "#1C2938",
-        color: "white",
         height: "100vh",
         borderRight: "1px solid #28394E",
       }}
@@ -56,7 +53,7 @@ const LeftSidebar = ({ iRef, imageList }) => {
             cursor: "pointer",
           }}
         >
-          <FaPlus /> <span> Add Label</span>
+          <FaPlus /> <span className="d-none d-md-block"> Add Label</span>
         </div>
 
         <div
@@ -94,9 +91,9 @@ const LeftSidebar = ({ iRef, imageList }) => {
                 className="mx-2 my-1 rounded tree-item"
                 onClick={() => toggleActive(itemId)}
                 label={
-                  <div className="d-flex align-items-center p-2">
+                  <div className="d-flex align-items-center p-lg-2">
                     {IconComponent && <IconComponent className="mx-2" />}
-                    <span>{label}</span>
+                    <span className="d-none d-md-block">{label}</span>
                   </div>
                 }
               >
@@ -107,18 +104,19 @@ const LeftSidebar = ({ iRef, imageList }) => {
                     gap: "12px",
                     padding: "8px",
                   }}
+                  className="imageList"
                 >
                   {imageList[dir].map((image, index) => (
                     <div
                       key={`image-${dir}-${index}`}
                       style={{ backgroundColor: "#006C6C" }}
-                      className="rounded p-2"
+                      className="rounded p-lg-2"
                     >
                       <img
                         id={`image-${dir}-${image}`}
                         src={`/images/stage-plot/${dir}/${image}`}
                         alt={`image-${dir}-${index}`}
-                        width="80%"
+                        width="100%"
                         draggable="true"
                         onDragStart={(e) => {
                           iRef.current = e.target;
@@ -134,7 +132,7 @@ const LeftSidebar = ({ iRef, imageList }) => {
       </SimpleTreeView>
 
       <div
-        className="w-100 d-flex py-4 position-absolute"
+        className="w-100 d-flex flex-column flex-lg-row py-4 position-absolute"
         style={{
           bottom: "0",
           justifyContent: "space-evenly",
