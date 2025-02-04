@@ -6,6 +6,8 @@ const downloadAsJPG = async (stageRef) => {
     removeBorder();
 
     const tables = document.querySelectorAll("table");
+    const td = document.querySelectorAll("td");
+    const th = document.querySelectorAll("th");
     const originalBackgroundColors = [];
 
     tables.forEach((table, index) => {
@@ -13,11 +15,27 @@ const downloadAsJPG = async (stageRef) => {
       table.style.backgroundColor = "white";
     });
 
+    td.forEach((td) => {
+      td.style.color = "black";
+    });
+
+    th.forEach((th) => {
+      th.style.color = "white";
+    });
+
     const canvas = await html2canvas(stageRef.current, { useCORS: true });
     const imgData = canvas.toDataURL("image/jpeg", 1.0);
 
     tables.forEach((table, index) => {
       table.style.backgroundColor = originalBackgroundColors[index];
+    });
+
+    td.forEach((td) => {
+      td.style.color = "#a0aec0";
+    });
+
+    th.forEach((th) => {
+      th.style.color = "#a0aec0";
     });
 
     // Convert the data URL to a Blob

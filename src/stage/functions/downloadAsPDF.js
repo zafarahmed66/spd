@@ -9,6 +9,8 @@ const downloadAsPDF = async (stageRef) => {
     const element = stageRef.current;
 
     const tables = document.querySelectorAll("table");
+    const td = document.querySelectorAll("td");
+    const th = document.querySelectorAll("th");
     const originalBackgroundColors = [];
 
     tables.forEach((table, index) => {
@@ -16,11 +18,27 @@ const downloadAsPDF = async (stageRef) => {
       table.style.backgroundColor = "white";
     });
 
+    td.forEach((td) => {
+      td.style.color = "black";
+    });
+
+    th.forEach((th) => {
+      th.style.color = "white";
+    });
+
     const canvas = await html2canvas(element, { scale: 2 }); // Higher scale improves resolution
     const imageData = canvas.toDataURL("image/png"); // Convert to image data
 
     tables.forEach((table, index) => {
       table.style.backgroundColor = originalBackgroundColors[index];
+    });
+
+    td.forEach((td) => {
+      td.style.color = "#a0aec0";
+    });
+
+    th.forEach((th) => {
+      th.style.color = "#a0aec0";
     });
 
     const pdf = new jsPDF({
