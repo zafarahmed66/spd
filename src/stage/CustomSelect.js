@@ -1,11 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  OutlinedInput,
-  Select,
-} from "@mui/material";
 import downloadAsJPG from "./functions/downloadAsJPG";
 import downloadAsPDF from "./functions/downloadAsPDF";
 

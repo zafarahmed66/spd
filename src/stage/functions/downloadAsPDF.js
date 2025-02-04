@@ -8,9 +8,21 @@ const downloadAsPDF = async (stageRef) => {
 
     const element = stageRef.current;
 
+    const tables = document.querySelectorAll("table");
+    const originalBackgroundColors = [];
+
+    tables.forEach((table, index) => {
+      originalBackgroundColors[index] = table.style.backgroundColor;
+      table.style.backgroundColor = "white";
+    });
+
     const canvas = await html2canvas(element, { scale: 2 }); // Higher scale improves resolution
-    console.log(canvas.width);
     const imageData = canvas.toDataURL("image/png"); // Convert to image data
+
+    tables.forEach((table, index) => {
+      table.style.backgroundColor = originalBackgroundColors[index];
+    });
+
     const pdf = new jsPDF({
       orientation: "landscape", // or 'landscape' depending on your layout
       unit: "px", // Use pixels for consistent scaling

@@ -291,9 +291,10 @@ const StageBuilder = () => {
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            height: "125vh",
+            height: "115vh",
             marginLeft: "20%",
           }}
+          id="stage-container"
         >
           <div
             style={{
@@ -434,6 +435,9 @@ const StageBuilder = () => {
 
           <div
             style={{
+              position: "fixed",
+              bottom: 0,
+              width: "80%",
               backgroundColor: "#1C2938",
               color: "white",
               padding: "0.85rem 12px",

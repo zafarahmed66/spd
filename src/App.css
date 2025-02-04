@@ -53,6 +53,10 @@ opacity: 30%;
 
 
 
+
+
+
+
 @media screen and (max-width: 620px) {
   
   .editable-div{
@@ -65,21 +69,58 @@ opacity: 30%;
   }
 }
 
-@media screen and (min-width: 800px) {
-  .inner-text {
-    font-size: 10px; /* Adjust the font size as needed */
+@media screen and (min-width: 375px) {
+  #stage-container {
+    margin-bottom: 75%;
   }
-  .table-text {
-    font-size: 10px; /* Adjust the font size as needed */
+
+  #logoText h4 {
+    font-size: 14px;
+  }
+
+  #logoText h6 {
+    font-size: 8px;
   }
 }
 
-@media screen and (min-width: 1080px) {
-  .inner-text {
-    font-size: 12px; /* Adjust the font size as needed */
+@media screen and (max-width: 600px) {
+    #sidebarItem {
+      padding-left: 6px;
+      padding-left: 6px;
+      gap: 0px;
+    }
+}
+
+@media screen and (min-width: 425px) {
+  #stage-container {
+    margin-bottom: 65%;
   }
-  .table-text {
-    font-size: 11px; /* Adjust the font size as needed */
+
+  #logoText h4 {
+    font-size: 16px;
+  }
+
+  #logoText h6 {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #stage-container {
+    margin-bottom: 18%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #stage-container {
+    margin-bottom: 9%;
+  }
+}
+
+
+@media screen and (min-width: 1440px) {
+  #stage-container {
+    margin-bottom: 5%;
   }
 }
 
@@ -103,3 +144,5 @@ opacity: 30%;
       width: 150px !important;
     }
   }
+
+

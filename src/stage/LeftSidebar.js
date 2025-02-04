@@ -30,10 +30,17 @@ const LeftSidebar = ({ iRef, imageList, setIsOpen }) => {
       <SimpleTreeView
         className="w-100 flex-grow-1"
         style={{ position: "relative" }}
-        sx={{ "& .MuiTreeItem-iconContainer": { order: 2 } }}
+        sx={{
+          "& .MuiTreeItem-iconContainer": {
+            order: 2,
+            "@media (max-width: 600px)": {
+              transform: "scale(0.6)",
+            },
+          },
+        }}
       >
         <div className="d-flex justify-content-center align-items-center p-2">
-          <div>
+          <div id="logoText">
             <h4 className="text-start">
               <b>BAND BREEZE</b>
             </h4>
@@ -86,12 +93,16 @@ const LeftSidebar = ({ iRef, imageList, setIsOpen }) => {
                     "&:hover": {
                       backgroundColor: "#424D59",
                     },
+                    "@media (max-width: 600px)": {
+                    padding: "4px",
+                    gap: "0px",
+                  },
                   },
                 }}
                 className="mx-2 my-1 rounded tree-item"
                 onClick={() => toggleActive(itemId)}
                 label={
-                  <div className="d-flex align-items-center p-lg-2">
+                  <div id="sidebarItem" className="d-flex align-items-center p-lg-2">
                     {IconComponent && <IconComponent className="mx-2" />}
                     <span className="d-none d-md-block">{label}</span>
                   </div>
@@ -103,6 +114,7 @@ const LeftSidebar = ({ iRef, imageList, setIsOpen }) => {
                     gridTemplateColumns: "repeat(2, 1fr)",
                     gap: "12px",
                     padding: "8px",
+
                   }}
                   className="imageList"
                 >

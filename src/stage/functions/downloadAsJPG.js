@@ -4,8 +4,21 @@ import { removeBorder } from "./removeBorder";
 const downloadAsJPG = async (stageRef) => {
   try {
     removeBorder();
+
+    const tables = document.querySelectorAll("table");
+    const originalBackgroundColors = [];
+
+    tables.forEach((table, index) => {
+      originalBackgroundColors[index] = table.style.backgroundColor;
+      table.style.backgroundColor = "white";
+    });
+
     const canvas = await html2canvas(stageRef.current, { useCORS: true });
     const imgData = canvas.toDataURL("image/jpeg", 1.0);
+
+    tables.forEach((table, index) => {
+      table.style.backgroundColor = originalBackgroundColors[index];
+    });
 
     // Convert the data URL to a Blob
     const byteString = atob(imgData.split(",")[1]);
