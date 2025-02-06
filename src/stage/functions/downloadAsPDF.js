@@ -27,7 +27,7 @@ const downloadAsPDF = async (stageRef) => {
     });
 
     const canvas = await html2canvas(element, { scale: 2 }); // Higher scale improves resolution
-    const imageData = canvas.toDataURL("image/png"); // Convert to image data
+    const imageData = canvas.toDataURL("image/png");
 
     tables.forEach((table, index) => {
       table.style.backgroundColor = originalBackgroundColors[index];
@@ -42,11 +42,25 @@ const downloadAsPDF = async (stageRef) => {
     });
 
     const pdf = new jsPDF({
-      orientation: "landscape", // or 'landscape' depending on your layout
-      unit: "px", // Use pixels for consistent scaling
-      format: [canvas.width, canvas.height], // Match canvas size to PDF
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4"
     });
-    pdf.addImage(imageData, "PNG", 0, 0, canvas.width, canvas.height);
+
+    // A4 dimensions in mm
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+
+    // Calculate scaling to fit the image while maintaining aspect ratio
+    const imgWidth = canvas.width;
+    const imgHeight = canvas.height;
+    const ratio = Math.min(pageWidth / imgWidth, pageHeight / imgHeight);
+    
+    // Calculate centered position
+    const x = (pageWidth - imgWidth * ratio) / 2;
+    const y = (pageHeight - imgHeight * ratio) / 2;
+
+    pdf.addImage(imageData, "PNG", x, y, imgWidth * ratio, imgHeight * ratio);
 
     if (window.showSaveFilePicker) {
       const handle = await showSaveFilePicker({

@@ -4,7 +4,7 @@ import { TreeItem } from "@mui/x-tree-view/TreeItem";
 import { FaPlus } from "react-icons/fa6";
 import { sidebarIcons } from "./helper";
 
-const LeftSidebar = ({ iRef, imageList, setIsOpen }) => {
+const LeftSidebar = ({ iRef, imageList }) => {
   const [activeItems, setActiveItems] = useState(new Set());
 
   const toggleActive = (itemId) => {

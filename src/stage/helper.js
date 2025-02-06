@@ -1,5 +1,4 @@
-import { LuDrum, LuGuitar, LuKeyboardMusic, LuSpeaker } from "react-icons/lu";
-import { MdOutlineMonitor } from "react-icons/md";
+import { LuDrum, LuGuitar, LuKeyboardMusic, LuSpeaker, LuMonitorSpeaker } from "react-icons/lu";
 import { LiaMicrophoneAltSolid } from "react-icons/lia";
 import { GiMusicalKeyboard, GiSaxophone } from "react-icons/gi";
 import { PiListNumbers } from "react-icons/pi";
@@ -27,7 +26,7 @@ export const sidebarIcons = {
   guitar: LuGuitar,
   keys: LuKeyboardMusic,
   microphone: LiaMicrophoneAltSolid,
-  monitor: MdOutlineMonitor,
+  monitor: LuMonitorSpeaker,
   sets: GiMusicalKeyboard,
   misc: GiSaxophone,
   numbers: PiListNumbers,
